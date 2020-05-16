@@ -41,11 +41,11 @@ class HomeActivity : BaseActivity(), HasAndroidInjector {
 
         setSupportActionBar(toolbar)
 
-        showSources()
+        showSourcesDialog()
 
     }
 
-    private fun showSources() {
+    private fun showSourcesDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Select sources")
         val choices = arrayOf(
@@ -151,6 +151,8 @@ class HomeActivity : BaseActivity(), HasAndroidInjector {
                         .setIcon(R.drawable.ic_home)
                 }
                 "insider" -> {
+                    bottom_navigation.menu.add(Menu.NONE, i, Menu.NONE, sources[i])
+                        .setIcon(R.drawable.ic_insider)
                 }
                 "magazine" -> {
                     bottom_navigation.menu.add(Menu.NONE, i, Menu.NONE, sources[i])
