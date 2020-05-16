@@ -53,10 +53,10 @@ class NewsFragment : BaseFragment(), NewsAdapter.Callback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         newsAdapter.setCallback(this)
-        init(savedInstanceState)
+        init()
     }
 
-    private fun init(savedInstanceState: Bundle?) {
+    private fun init() {
 
         retry_button.setOnClickListener {
             retry_button.visibility = View.GONE
