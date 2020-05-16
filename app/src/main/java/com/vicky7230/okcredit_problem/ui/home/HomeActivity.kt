@@ -216,7 +216,7 @@ class HomeActivity : BaseActivity(), HasAndroidInjector {
                 }
                 "us" -> {
                     bottom_navigation.menu.add(Menu.NONE, i, Menu.NONE, sources[i])
-                        .setIcon(R.drawable.ic_science)
+                        .setIcon(R.drawable.ic_us)
                 }
                 "world" -> {
                     bottom_navigation.menu.add(Menu.NONE, i, Menu.NONE, sources[i])
