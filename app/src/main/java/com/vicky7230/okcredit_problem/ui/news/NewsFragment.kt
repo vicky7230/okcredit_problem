@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -14,18 +13,15 @@ import com.vicky7230.okcredit_problem.R
 import com.vicky7230.okcredit_problem.data.Article
 import com.vicky7230.okcredit_problem.data.State
 import com.vicky7230.okcredit_problem.ui.base.BaseFragment
+import com.vicky7230.okcredit_problem.ui.details.DetailsActivity
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_source_news.*
 import javax.inject.Inject
 
-
-/**
- * A simple [Fragment] subclass.
- */
 class NewsFragment : BaseFragment(), NewsAdapter.Callback {
 
     companion object {
-        val SOURCE = "source"
+        const val SOURCE = "source"
     }
 
     @Inject
@@ -57,6 +53,12 @@ class NewsFragment : BaseFragment(), NewsAdapter.Callback {
     }
 
     private fun init() {
+        refresh_layout.setColorSchemeResources(R.color.colorBlue)
+        refresh_layout.setOnRefreshListener {
+            arguments?.takeIf { it.containsKey(SOURCE) }?.apply {
+                newsViewModel.deleteArticlesFromDb(getString(SOURCE)!!)
+            }
+        }
 
         retry_button.setOnClickListener {
             retry_button.visibility = View.GONE
@@ -83,12 +85,14 @@ class NewsFragment : BaseFragment(), NewsAdapter.Callback {
                     progress.visibility = View.GONE
                     news_list.visibility = View.GONE
                     retry_button.visibility = View.VISIBLE
+                    refresh_layout.isRefreshing = false
                     showError(it.exception.localizedMessage)
                 }
                 is State.Success -> {
                     progress.visibility = View.GONE
                     retry_button.visibility = View.GONE
                     news_list.visibility = View.VISIBLE
+                    refresh_layout.isRefreshing = false
                     newsAdapter.updateItems(it.data)
                 }
             }
@@ -100,14 +104,11 @@ class NewsFragment : BaseFragment(), NewsAdapter.Callback {
     }
 
     override fun onItemClick(article: Article) {
-        /*arguments?.takeIf { it.containsKey(SOURCE_NAME) }?.apply {
-            *//*startActivity(
-                WebViewUI.getStartIntent(
-                    context!!,
-                    article.url,
-                    getString(SOURCE_NAME)!!
-                )
-            )*//*
-        }*/
+        startActivity(
+            DetailsActivity.getStartIntent(
+                context!!,
+                article
+            )
+        )
     }
 }

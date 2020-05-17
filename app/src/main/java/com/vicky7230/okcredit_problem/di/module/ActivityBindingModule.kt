@@ -1,6 +1,8 @@
 package com.vicky7230.okcredit_problem.di.module
 
 
+import com.vicky7230.okcredit_problem.ui.details.DetailsActivity
+import com.vicky7230.okcredit_problem.ui.details.DetailsActivityModule
 import com.vicky7230.okcredit_problem.ui.home.FragmentProvider
 import com.vicky7230.okcredit_problem.ui.home.HomeActivity
 import com.vicky7230.okcredit_problem.ui.home.HomeActivityModule
@@ -12,5 +14,8 @@ abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector(modules = [HomeActivityModule::class, FragmentProvider::class])
     abstract fun bindHomeActivity(): HomeActivity
+
+    @ContributesAndroidInjector(modules = [DetailsActivityModule::class])
+    abstract fun bindDetailsActivity(): DetailsActivity
 
 }

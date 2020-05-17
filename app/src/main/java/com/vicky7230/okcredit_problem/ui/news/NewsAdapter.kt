@@ -60,9 +60,9 @@ class NewsAdapter(private var newsArrayList: ArrayList<Article>) :
         RecyclerView.ViewHolder(itemView) {
 
         fun onBind(news: Article) {
-            if (isValidUrl(news.imageUrl)) {
+            if (isValidUrl(news.thumbnailImageUrl)) {
                 Glide.with(itemView.context)
-                    .load(news.imageUrl)
+                    .load(news.thumbnailImageUrl)
                     .error(R.drawable.ic_alert_black_48dp)
                     .transform(CenterCrop(), RoundedCorners(25))
                     .into(itemView.image)

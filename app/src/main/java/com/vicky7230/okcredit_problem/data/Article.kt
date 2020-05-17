@@ -32,6 +32,9 @@ data class Article(
     @ColumnInfo(name = "url")
     var url: String,
 
-    @ColumnInfo(name = "image_url")
-    var imageUrl: String
+    @ColumnInfo(name = "cover_image_url")
+    var coverImageUrl: String,
+
+    @ColumnInfo(name = "thumbnail_url")
+    var thumbnailImageUrl: String
 ) : Parcelable

@@ -16,4 +16,7 @@ interface ArticleDao {
 
     @Query("SELECT * FROM articles WHERE source =:source")
     fun getArticles(source: String): Flowable<List<Article>>
+
+    @Query("DELETE FROM articles WHERE source =:source")
+    fun deleteArticles(source: String): Single<Int>
 }

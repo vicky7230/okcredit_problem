@@ -14,4 +14,8 @@ class AppDbHelper @Inject constructor(private val appDatabase: AppDatabase) : Db
     override fun getArticles(source: String): Flowable<List<Article>> {
         return appDatabase.articleDao().getArticles(source)
     }
+
+    override fun deleteArticles(source: String): Single<Int> {
+        return appDatabase.articleDao().deleteArticles(source)
+    }
 }

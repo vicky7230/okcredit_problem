@@ -11,4 +11,6 @@ interface DbHelper {
 
     fun getArticles(source: String): Flowable<List<Article>>
 
+    fun deleteArticles(source: String): Single<Int>
+
 }

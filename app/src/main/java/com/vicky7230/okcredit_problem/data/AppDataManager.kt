@@ -26,4 +26,8 @@ constructor(
         return appDbHelper.getArticles(source)
     }
 
+    override fun deleteArticles(source: String): Single<Int> {
+        return appDbHelper.deleteArticles(source)
+    }
+
 }
