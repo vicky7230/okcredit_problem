@@ -108,11 +108,6 @@ class NewsViewModel @Inject constructor(
         )
     }
 
-    override fun onCleared() {
-        compositeDisposable.dispose()
-        super.onCleared()
-    }
-
     fun deleteArticlesFromDb(source: String) {
         state.value = State.Loading
 
@@ -127,5 +122,10 @@ class NewsViewModel @Inject constructor(
                     Timber.e(it)
                 })
         )
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 }
